@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1680446701 source:c:\users\catalina\documents\apd-mergesort\main.cpp
+	"utils.h"
+	"mergeSortSecvential.h"
+	"mergeSortParallel.h"
+	<chrono>
+	<windows.h>
+	<list>
+	<forward_list>
+
+1680316106 c:\users\catalina\documents\apd-mergesort\utils.h
+	<iostream>
+	<fstream>
+
+1680428284 source:c:\users\catalina\documents\apd-mergesort\utils.cpp
+	"utils.h"
+
+1680196296 source:c:\users\catalina\documents\apd-mergesort\mergesort.cpp
+	"mergeSort.h"
+	<iostream>
+
+1680196296 c:\users\catalina\documents\apd-mergesort\mergesort.h
+
+1680435819 c:\users\catalina\documents\apd-mergesort\mergesortsecvential.h
+	<iostream>
+
+1680446209 source:c:\users\catalina\documents\apd-mergesort\mergesortsecvential.cpp
+	"mergeSortSecvential.h"
+
+1680436026 source:c:\users\catalina\documents\apd-mergesort\mergesortparallel.cpp
+	<thread>
+	<vector>
+	"mergeSortParallel.h"
+	"mergeSortSecvential.h"
+
+1680394462 c:\users\catalina\documents\apd-mergesort\mergesortparallel.h
+
