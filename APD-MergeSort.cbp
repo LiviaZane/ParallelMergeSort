@@ -33,8 +33,13 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="files/sortExpected.bin" />
+		<Unit filename="files/tests.csv" />
 		<Unit filename="files/unsorted.bin" />
 		<Unit filename="main.cpp" />
+		<Unit filename="mainBigData.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="mergeSortParallel.cpp" />
 		<Unit filename="mergeSortParallel.h" />
 		<Unit filename="mergeSortSecvential.cpp" />

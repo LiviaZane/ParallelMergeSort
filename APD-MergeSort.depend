@@ -35,3 +35,42 @@
 
 1680394462 c:\users\catalina\documents\apd-mergesort\mergesortparallel.h
 
+1680436026 source:d:\documente facultate\anul iii\semestrul 2\apd\mergesort\apd-mergesort\apd-mergesort\mergesortparallel.cpp
+	<thread>
+	<vector>
+	"mergeSortParallel.h"
+	"mergeSortSecvential.h"
+
+1680394462 d:\documente facultate\anul iii\semestrul 2\apd\mergesort\apd-mergesort\apd-mergesort\mergesortparallel.h
+
+1680435819 d:\documente facultate\anul iii\semestrul 2\apd\mergesort\apd-mergesort\apd-mergesort\mergesortsecvential.h
+	<iostream>
+
+1680446209 source:d:\documente facultate\anul iii\semestrul 2\apd\mergesort\apd-mergesort\apd-mergesort\mergesortsecvential.cpp
+	"mergeSortSecvential.h"
+
+1680428284 source:d:\documente facultate\anul iii\semestrul 2\apd\mergesort\apd-mergesort\apd-mergesort\utils.cpp
+	"utils.h"
+
+1680316106 d:\documente facultate\anul iii\semestrul 2\apd\mergesort\apd-mergesort\apd-mergesort\utils.h
+	<iostream>
+	<fstream>
+
+1682892925 source:d:\documente facultate\anul iii\semestrul 2\apd\mergesort\apd-mergesort\apd-mergesort\main.cpp
+	"utils.h"
+	"mergeSortSecvential.h"
+	"mergeSortParallel.h"
+	<chrono>
+	<windows.h>
+	<list>
+	<forward_list>
+
+1682879156 source:d:\documente facultate\anul iii\semestrul 2\apd\mergesort\apd-mergesort\apd-mergesort\mainbigdata.cpp
+	"utils.h"
+	"mergeSortSecvential.h"
+	"mergeSortParallel.h"
+	<chrono>
+	<windows.h>
+	<list>
+	<forward_list>
+

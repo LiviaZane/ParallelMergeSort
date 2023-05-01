@@ -20,6 +20,8 @@ int main()
     GlobalMemoryStatusEx (&statex);
     auto initialMemoryLoad = statex.dwMemoryLoad;
     cout << "Initial memory used : " << initialMemoryLoad << "%" << endl << endl;
+    ofstream outFileTests("files/tests.csv", ios::out| ios::app);
+    //outFileTests << "Type, Size, Threads, InitialMemory, FinalMemory, Time[ms]" << endl;
 
     int n;
     cout << "Enter the number of elements: ";
@@ -55,22 +57,41 @@ int main()
     // Merge sorting a list and a forward_list with their C++ implicit sort() method
     list<int> cppListSorting;
     forward_list<int> cppForwardListSorting;
-//    for (int i = 0; i < sizeArrayUnsorted; i++)
-//        cppListSorting.push_back(arrUnsorted[i]);
+    for (int i = 0; i < sizeArrayUnsorted; i++)
+        cppListSorting.push_back(arrUnsorted[i]);
     auto start = chrono::high_resolution_clock::now();                        // start time counting
     cppListSorting.sort();                                                         // run the algorithm
     auto finish = chrono::high_resolution_clock::now();                       // stop time counting
+    GlobalMemoryStatusEx (&statex);
+    cout << "Memory used : " << statex.dwMemoryLoad << "%" << endl;
     auto timeTaken =  chrono::duration_cast<std::chrono::milliseconds>(finish-start).count();
+    outFileTests << "List,";
+    outFileTests << n;
+    outFileTests << ",,";
+    outFileTests << initialMemoryLoad;
+    outFileTests << ",";
+    outFileTests << statex.dwMemoryLoad;
+    outFileTests << ",";
+    outFileTests <<timeTaken << endl;
     cout << "Time for sorting a list (double linked list) with implicit sort() method in C++: " << timeTaken << " ms. " << endl << endl;
     arrUnsorted = readArrayFromFile(fileNameUnsortedArray);
-//    for (int i = 0; i < sizeArrayUnsorted; i++)
-//        cppForwardListSorting.push_front(arrUnsorted[i]);
+    for (int i = 0; i < sizeArrayUnsorted; i++)
+        cppForwardListSorting.push_front(arrUnsorted[i]);
     start = chrono::high_resolution_clock::now();
     cppForwardListSorting.sort();
     finish = chrono::high_resolution_clock::now();
+    GlobalMemoryStatusEx (&statex);
+    cout << "Memory used : " << statex.dwMemoryLoad << "%" << endl;
     timeTaken =  chrono::duration_cast<std::chrono::milliseconds>(finish-start).count();
     cout << "Time for sorting a forward_list (single linked list) with implicit sort() method in C++: " << timeTaken << " ms. " << endl << endl;
-
+    outFileTests << "ForwardList,";
+    outFileTests << n;
+    outFileTests << ",,";
+    outFileTests << initialMemoryLoad;
+    outFileTests << ",";
+    outFileTests << statex.dwMemoryLoad;
+    outFileTests << ",";
+    outFileTests <<timeTaken << endl;
 
     // Merge sort sequentially recursive algorithm
     cout << "Array of " << numberWithComma(sizeArrayUnsorted) << " elements is merge sorting with sequentially recursive algorithm" << endl;
@@ -82,6 +103,14 @@ int main()
     cout << "Memory used : " << statex.dwMemoryLoad << "%" << endl;
     timeTaken =  chrono::duration_cast<std::chrono::milliseconds>(finish-start).count();
     cout << "Time : " << timeTaken << " ms. " << endl;
+    outFileTests << "SecventiallyRecursive,";
+    outFileTests << n;
+    outFileTests << ",,";
+    outFileTests << initialMemoryLoad;
+    outFileTests << ",";
+    outFileTests << statex.dwMemoryLoad;
+    outFileTests << ",";
+    outFileTests <<timeTaken << endl;
     result = (compareTwoArrays(arrSortedSequentiallyRecursive, sizeArrayUnsorted, arrSortedExpected, sizeSortedExpected))
         ? "Array was sorted as expected." : "Array was not sorted as expected !!!";
     cout << result << endl << endl;
@@ -97,6 +126,14 @@ int main()
     cout << "Memory used : " << statex.dwMemoryLoad << "%" << endl;
     timeTaken =  chrono::duration_cast<std::chrono::milliseconds>(finish-start).count();
     cout << "Time : " << timeTaken << " ms. " << endl;
+    outFileTests << "SecventiallyIterative,";
+    outFileTests << n;
+    outFileTests << ",,";
+    outFileTests << initialMemoryLoad;
+    outFileTests << ",";
+    outFileTests << statex.dwMemoryLoad;
+    outFileTests << ",";
+    outFileTests <<timeTaken << endl;
     result = (compareTwoArrays(arrSortedSequentiallyIterative, sizeArrayUnsorted, arrSortedExpected, sizeSortedExpected))
         ? "Array was sorted as expected." : "Array was not sorted as expected !!!";
     cout << result << endl << endl;
@@ -112,6 +149,16 @@ int main()
     cout << "Memory used : " << statex.dwMemoryLoad << "%" << endl;
     timeTaken =  chrono::duration_cast<std::chrono::milliseconds>(finish-start).count();
     cout << "Time : " << timeTaken << " ms. " << endl;
+    outFileTests << "ParallelRecursive,";
+    outFileTests << n;
+    outFileTests << ",";
+    outFileTests << threadsNo;
+    outFileTests << ",";
+    outFileTests << initialMemoryLoad;
+    outFileTests << ",";
+    outFileTests << statex.dwMemoryLoad;
+    outFileTests << ",";
+    outFileTests <<timeTaken << endl;
     result = (compareTwoArrays(arrSortedParallelRecursive, sizeArrayUnsorted, arrSortedExpected, sizeSortedExpected))
         ? "Array was sorted as expected." : "Array was not sorted as expected !!!";
     cout << result << endl << endl;
@@ -127,11 +174,21 @@ int main()
     cout << "Memory used : " << statex.dwMemoryLoad << "%" << endl;
     timeTaken =  chrono::duration_cast<std::chrono::milliseconds>(finish-start).count();
     cout << "Time : " << timeTaken << " ms. " << endl;
+    outFileTests << "ParallelRecursive,";
+    outFileTests << n;
+    outFileTests << ",";
+    outFileTests << threadsNo;
+    outFileTests << ",";
+    outFileTests << initialMemoryLoad;
+    outFileTests << ",";
+    outFileTests << statex.dwMemoryLoad;
+    outFileTests << ",";
+    outFileTests <<timeTaken << endl;
     result = (compareTwoArrays(arrSortedParallelIterative, sizeArrayUnsorted, arrSortedExpected, sizeSortedExpected))
         ? "Array was sorted as expected." : "Array was not sorted as expected !!!";
     cout << result << endl << endl;
 
-
+    outFileTests.close();
     delete[] arrSortedExpected;
     delete[] arrUnsorted;
 
